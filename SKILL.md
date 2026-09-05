@@ -11,7 +11,8 @@ description: >-
   "mdBook include files", "mdBook hiding code lines",
   or any topic related to creating, configuring, theming, building, or deploying
   documentation books with mdBook.
-version: 0.1.0
+metadata:
+  version: "0.1.0"
 ---
 
 # mdBook Documentation
@@ -85,13 +86,13 @@ Identify the topic from the user's question, then read the matching reference fi
 When reference files are insufficient, fetch the latest docs from raw GitHub:
 
 ```
-https://raw.githubusercontent.com/rust-lang/mdBook/master/guide/src/<path>.md
+https://raw.githubusercontent.com/rust-lang/mdBook/main/guide/src/<path>.md
 ```
 
 Examples:
-- `https://raw.githubusercontent.com/rust-lang/mdBook/master/guide/src/format/configuration/general.md`
-- `https://raw.githubusercontent.com/rust-lang/mdBook/master/guide/src/cli/build.md`
-- `https://raw.githubusercontent.com/rust-lang/mdBook/master/guide/src/format/theme/syntax-highlighting.md`
+- `https://raw.githubusercontent.com/rust-lang/mdBook/main/guide/src/format/configuration/general.md`
+- `https://raw.githubusercontent.com/rust-lang/mdBook/main/guide/src/cli/build.md`
+- `https://raw.githubusercontent.com/rust-lang/mdBook/main/guide/src/format/theme/syntax-highlighting.md`
 
 ## Strategy
 

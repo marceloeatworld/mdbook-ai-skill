@@ -16,13 +16,13 @@ cleanup() { rm -rf "$WORK_DIR"; }
 trap cleanup EXIT
 
 echo "==> Cloning mdBook (sparse, guide/ only)..."
-git clone --depth 1 --filter=blob:none --sparse --quiet "$MDBOOK_REPO" "$WORK_DIR/mdbook"
+git clone --filter=blob:none --sparse --quiet "$MDBOOK_REPO" "$WORK_DIR/mdbook"
 git -C "$WORK_DIR/mdbook" sparse-checkout set guide/src/
 
 GUIDE="$WORK_DIR/mdbook/guide/src"
 
-MDBOOK_COMMIT=$(git -C "$WORK_DIR/mdbook" rev-parse --short HEAD)
-MDBOOK_DATE=$(git -C "$WORK_DIR/mdbook" log -1 --format=%ci)
+MDBOOK_COMMIT=$(git -C "$WORK_DIR/mdbook" log -1 --format=%h -- guide/src)
+MDBOOK_DATE=$(git -C "$WORK_DIR/mdbook" log -1 --format=%ci -- guide/src)
 
 echo "==> mdBook commit: $MDBOOK_COMMIT ($MDBOOK_DATE)"
 
@@ -47,8 +47,8 @@ copy_page() {
 }
 
 merge_pages() {
-    local dst="$REFS_DIR/$1" header="$2" url="$3" repo="$4"
-    shift 4
+    local dst="$REFS_DIR/$1" header="$2" url="$3"
+    shift 3
     {
         echo "<!-- source: $url -->"
         echo "<!-- repo: rust-lang/mdBook commit $MDBOOK_COMMIT ($MDBOOK_DATE) -->"
@@ -100,7 +100,7 @@ copy_page "$GUIDE/guide/reading.md" \
 # ── CLI ────────────────────────────────────────────────────────────────
 
 merge_pages "cli.md" "mdBook CLI Reference" \
-    "https://rust-lang.github.io/mdBook/cli/" "rust-lang/mdBook" \
+    "https://rust-lang.github.io/mdBook/cli/" \
     "$GUIDE/cli/README.md" \
     "$GUIDE/cli/init.md" \
     "$GUIDE/cli/build.md" \
@@ -118,7 +118,7 @@ copy_page "$GUIDE/format/summary.md" \
     "https://rust-lang.github.io/mdBook/format/summary.html"
 
 merge_pages "configuration.md" "mdBook Configuration (book.toml)" \
-    "https://rust-lang.github.io/mdBook/format/configuration/" "rust-lang/mdBook" \
+    "https://rust-lang.github.io/mdBook/format/configuration/" \
     "$GUIDE/format/configuration/README.md" \
     "$GUIDE/format/configuration/general.md" \
     "$GUIDE/format/configuration/preprocessors.md" \
@@ -140,7 +140,7 @@ copy_page "$GUIDE/format/mdbook.md" \
 # ── Theme ──────────────────────────────────────────────────────────────
 
 merge_pages "theme.md" "mdBook Theme Customization" \
-    "https://rust-lang.github.io/mdBook/format/theme/" "rust-lang/mdBook" \
+    "https://rust-lang.github.io/mdBook/format/theme/" \
     "$GUIDE/format/theme/README.md" \
     "$GUIDE/format/theme/index-hbs.md" \
     "$GUIDE/format/theme/syntax-highlighting.md" \
@@ -149,7 +149,7 @@ merge_pages "theme.md" "mdBook Theme Customization" \
 # ── For Developers ─────────────────────────────────────────────────────
 
 merge_pages "for-developers.md" "mdBook for Developers (Preprocessors & Backends)" \
-    "https://rust-lang.github.io/mdBook/for_developers/" "rust-lang/mdBook" \
+    "https://rust-lang.github.io/mdBook/for_developers/" \
     "$GUIDE/for_developers/README.md" \
     "$GUIDE/for_developers/preprocessors.md" \
     "$GUIDE/for_developers/backends.md"

@@ -4,7 +4,7 @@ Auto-updated [mdBook](https://rust-lang.github.io/mdBook/) documentation for AI 
 
 Uses the open [Agent Skills](https://agentskills.io) standard (SKILL.md). Works with **33+ AI coding assistants** including Claude Code, Cursor, Windsurf, GitHub Copilot, OpenAI Codex, Gemini CLI, Amp, OpenCode, Cline, Aider, Goose, Roo Code, and [many more](https://agentskills.io/clients).
 
-References are **auto-generated** daily from the official [mdBook guide](https://github.com/rust-lang/mdBook/tree/master/guide) via GitHub Actions.
+References are **auto-generated** daily from the official [mdBook guide](https://github.com/rust-lang/mdBook/tree/main/guide) via GitHub Actions.
 
 ## Install
 
